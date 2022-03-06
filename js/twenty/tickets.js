@@ -4,12 +4,10 @@ window.onload = () => {
     saveTickets();
     return;
   }
-
   loadStorage();
-}
+};
 const amontBas = document.querySelector('#Basic');
 const amontSen = document.querySelector('#Senior');
-
 
 function ticketTypeCheck() {
   if (document.querySelector('#radio1').checked) return 20;
@@ -18,9 +16,8 @@ function ticketTypeCheck() {
 }
 
 function totalCost(type, numBas, numSen) {
-  return type * numBas * 1 + type * numSen * 1 / 2;
+  return type * numBas * 1 + (type * numSen * 1) / 2;
 }
-
 
 function Basic() {
   return document.querySelector('#Basic').value;
@@ -30,22 +27,25 @@ function Senior() {
   return document.querySelector('#Senior').value;
 }
 
-document.querySelector('.basic-senior-wrapper').onclick = function() {
-
-  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(ticketTypeCheck(), Basic(), Senior())}`
+document.querySelector('.basic-senior-wrapper').onclick = function () {
+  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(
+    ticketTypeCheck(),
+    Basic(),
+    Senior()
+  )}`;
   saveRadio();
   saveTickets();
-}
+};
 
-document.querySelector('.radio-inner').onclick = function() {
-
-  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(ticketTypeCheck(), Basic(), Senior())}`
+document.querySelector('.radio-inner').onclick = function () {
+  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(
+    ticketTypeCheck(),
+    Basic(),
+    Senior()
+  )}`;
   saveRadio();
   saveTickets();
-
-}
-
-
+};
 
 function saveRadio() {
   if (document.querySelector('#radio1').checked) sessionStorage.setItem('radio', '#radio1');
@@ -57,13 +57,14 @@ function loadStorage() {
   document.querySelector(sessionStorage.radio).checked = true;
   document.querySelector('#Senior').value = sessionStorage.senior;
   document.querySelector('#Basic').value = sessionStorage.basic;
-  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(ticketTypeCheck(), Basic(), Senior())}`
-
-
-
+  document.querySelector('#ticketsCost').innerHTML = `Total € ${totalCost(
+    ticketTypeCheck(),
+    Basic(),
+    Senior()
+  )}`;
 }
 
 function saveTickets() {
-  sessionStorage.setItem('basic', Basic())
-  sessionStorage.setItem('senior', Senior())
+  sessionStorage.setItem('basic', Basic());
+  sessionStorage.setItem('senior', Senior());
 }
